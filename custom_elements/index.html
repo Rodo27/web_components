@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Elements</title>
+    <link rel="import" href="import.html">
+</head>
+<body>
+    
+    <script>
+        let html_i = document.querySelector('link[rel="import"]').import
+        let text = html_i.getElementById("text")
+        document.body.appendChild(text.cloneNode(true))
+    </script>
+</body>
+</html>
+
+<!-- This way to load components is desprecated -->
