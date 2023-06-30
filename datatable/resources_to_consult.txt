@@ -1,0 +1,6 @@
+Data table search input
+https://datatables.net/examples/api/multi_filter.html
+
+Data table select search
+https://datatables.net/forums/discussion/75838/stiling-the-order-buttons-and-individual-column-searching-select-inputs-in-header
+https://live.datatables.net/saqozowe/1828/edit
