@@ -7,6 +7,16 @@
 </head>
 <body>
 
-    <script src="index.js" type="module"></script>
+    <button onclick="module.hello()">Click me!</button>
+
+    <script>
+        const module = {}
+    </script>
+
+    <script type="module">
+        import {hello} from './index.js'
+
+        module.hello = hello
+    </script>
 </body>
 </html>

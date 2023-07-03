@@ -29,3 +29,7 @@ import * as math from './math.js'
 
 console.log(math.add(100, 20))
 console.log(math.subtract(100, 20))
+
+export function hello(){
+    alert('Hello! World!')
+}
