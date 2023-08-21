@@ -51,18 +51,45 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="form_edit">
                     <div class="form-group">
                         <label for="">Laboratory: </label>
-                        <input class="form-control" type="text" name="laboratory">
+                        <input class="form-control" type="text" name="laboratory" id="name_laboratory">
                         <input type="hidden" id="id_laboratory">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            
+        </div>
+        </div>
+    </div>
+  
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Laboratory</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <form id="form_delete"> 
+                    <div class="form-group">
+                        <label for="">Laboratory: </label>
+                        <label id="laboratory_delete"></label>
+                        <input type="hidden" id="id_laboratory">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            
         </div>
         </div>
     </div>
@@ -83,7 +110,7 @@
 
             let action = "list";
 
-            $("#datatable_users").DataTable({
+            let dataTable = $("#datatable_users").DataTable({
                 ajax: {
                     "url": "controllers/LaboratoryController.php",
                     "method": "POST",
@@ -93,11 +120,43 @@
                     { data: 'id' },
                     { data: 'nombre' },
                     { defaultContent: 
-                        `<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
-                        <button class="btn btn-danger">Delete</button>`
+                        `<button class="btn btn-primary edit" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                        <button class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>`
                     }
                 ],
                 "language":spanish
+            })
+
+            $("#datatable_users tbody").on('click', '.edit', function(){
+                let data = dataTable.row($(this).parents()).data()
+                $('#name_laboratory').val(data.nombre)
+                $("#id_laboratory").val(data.id)
+
+            })
+
+            $("#datatable_users tbody").on('click', '.delete', function(){
+                let data = dataTable.row($(this).parents()).data()
+                $("#laboratory_delete").html(data.nombre)
+                $("#id_laboratory").val(data.id)
+            })
+            
+
+            $("#form_edit").submit(e =>{
+
+                let id= $("#id_laboratory").val()
+                let nombre = $('#name_laboratory').val()
+                
+                action = 'edit'
+                $.post('controllers/LaboratoryController.php',{id, nombre, action},(response) => {})
+            })
+
+            $("#form_delete").submit(e =>{
+
+                let id= $("#id_laboratory").val()
+        
+                action = 'delete'
+                $.post('controllers/LaboratoryController.php',{id, action},(response) => {})
+                
             })
         })
 

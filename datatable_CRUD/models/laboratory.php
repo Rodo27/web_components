@@ -17,4 +17,14 @@
 
             return $this->laboratories;
         }
+
+        function edit($id, $nombre){
+            $sql =  "UPDATE laboratorio SET nombre = '$nombre' WHERE id = '$id' ";
+            $result =  $this->access->query($sql);
+        }
+
+        function delete($id){
+            $sql =  "DELETE FROM laboratorio WHERE id = '$id' ";
+            $result =  $this->access->query($sql);
+        }
     }

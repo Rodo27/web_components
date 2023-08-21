@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-08-2023 a las 20:37:12
+-- Tiempo de generación: 21-08-2023 a las 18:56:41
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 5.6.40
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `laboratorio` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `laboratorio`
